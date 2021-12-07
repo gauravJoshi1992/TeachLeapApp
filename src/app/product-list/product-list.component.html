@@ -1,1 +1,20 @@
-<p>product-list works!</p>
+<table class="table table-hover"  *ngFor="let item of productList">
+    <tbody>
+      <tr routerLink = "/product-detail" style="cursor: pointer;">
+        <th scope="row">
+            <img class="card-img-top" src="{{item.image}}" alt="Card image cap" style="width: 10rem; height: 10rem;">
+        </th>
+        <td>
+            <h5 class="card-title">{{item.title}}</h5><br>
+            <p class="card-text">Description: {{item.description}}</p><br>
+            <p class="card-text">Category: {{item.category}}</p><br>
+            <p class="card-text">Price: {{item.price}}</p>
+            <ngb-rating [max] = "5" [(rate)]="item.rating.rate" [readonly]="true">
+              <ng-template let-fill="fill" let-index="index">
+                <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+              </ng-template>
+            </ngb-rating>
+        </td> 
+      </tr>
+    </tbody>
+  </table>
