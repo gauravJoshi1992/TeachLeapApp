@@ -9,6 +9,6 @@ export class ProductListService {
    }
 
    getProductList(){
-     return this.http.get('https://fakestoreapi.com/products');
+     return this.http.get('http://localhost:4000/productList');
    }
 }
