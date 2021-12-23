@@ -1,20 +1,42 @@
-<table class="table table-hover"  *ngFor="let item of productList">
-    <tbody>
-      <tr routerLink = "/product-detail" style="cursor: pointer;">
-        <th scope="row">
-            <img class="card-img-top" src="{{item.image}}" alt="Card image cap" style="width: 10rem; height: 10rem;">
-        </th>
-        <td>
-            <h5 class="card-title">{{item.title}}</h5><br>
-            <p class="card-text">Description: {{item.description}}</p><br>
-            <p class="card-text">Category: {{item.category}}</p><br>
-            <p class="card-text">Price: {{item.price}}</p>
-            <ngb-rating [max] = "5" [(rate)]="item.rating.rate" [readonly]="true">
-              <ng-template let-fill="fill" let-index="index">
-                <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
-              </ng-template>
-            </ngb-rating>
-        </td> 
-      </tr>
-    </tbody>
-  </table>
+<div style="width: 20%; height: 100%; float: left; margin-top: 5rem;">
+  <h4>Filters</h4>
+  <hr>
+  <div *ngFor="let item of genderData" style="margin:8px">
+    <label class="custom-control custom-radio">
+      <input type="radio" name="{{item.title}}" id="gender" value="{{item.title}}" class="custom-control-input">
+      &nbsp;&nbsp;
+      <span class="custom-control-indicator">
+        {{item.title}}
+      </span>
+    </label>
+    <br>
+  </div>
+  <hr>
+  <h6 style="margin: 8px;">CATEGORY</h6>
+  <div *ngFor="let item of categoryData" style="margin:8px">
+    <label class="custom-control custom-checkbox">
+      <input type="checkbox" name="{{item.title}}" id="{{item.title}}" value="checkedValue"
+        class="custom-control-input"> &nbsp; &nbsp;
+      <span class="custom-control-indicator">{{item.title}}</span>
+    </label>
+  </div>
+</div>
+<div style="width: 80%; height: 100%; float: left;">
+  <div routerLink="/product-detail" class="product" *ngFor=" let item of productList">
+    <div class="image-box"></div>
+    <img class="image" src="{{item.image}}">
+    <div class="text">
+      <p style="font-weight: bold; margin-top: 4%;">{{item.brand}}</p>
+      <p style="margin-top: 8px; margin-bottom: 8px;">{{item.title}}</p>
+      <p style="font-weight: bold;">Rs. {{item.price}} &nbsp; &nbsp; <del style="color: #7e818c; font-weight: 400;"> Rs.
+          {{item.price}}</del></p>
+      <p>{{item.rating.rate}} |
+        <ngb-rating [max]="5" [(rate)]="item.rating.rate" [readonly]="true">
+          <ng-template let-fill="fill" let-index="index">
+            <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+          </ng-template>
+        </ngb-rating>
+      </p>
+    </div>
+  </div>
+  <div>
