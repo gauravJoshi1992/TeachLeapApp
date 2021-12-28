@@ -1,5 +1,24 @@
 <article>
-    <section>
-
+    <section class = "section">
+        <div class="card" >
+            <div class="card-body">
+            <form [formGroup] = 'loginForm'>
+                <div class = "container">
+                    <div class="form-group">
+                        <label for="user-name">Username: </label>
+                        <input type="text" class="form-control" name="user-name" id="user-name" aria-describedby="helpId"
+                            placeholder="Enter USername" formControlName='username'>
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Password: </label>
+                        <input type="password" class="form-control" name="pwd" id="pwd" aria-describedby="helpId"
+                            placeholder="Enter Password" formControlName='password'>
+                    </div>
+                    <button class="btn btn-primary" (click) = "submit()">Submit</button>
+                </div>
+            </form>
+                
+            </div>
+        </div>
     </section>
 </article>

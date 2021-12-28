@@ -11,6 +11,9 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { AboutMeComponent } from './about-me/about-me.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginModule } from './login/login.module';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule,
+    FormsModule,
+    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]

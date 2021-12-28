@@ -1,0 +1,19 @@
+.section{
+    height: calc(100vh - 56px);
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    display: flex;
+}
+
+.card{
+    width: 50%;
+}
+
+label{
+    padding-bottom: 5px;
+}
+
+input{
+    padding: 10px;
+}
