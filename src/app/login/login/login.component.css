@@ -8,6 +8,7 @@
 
 .card{
     width: 50%;
+    box-shadow: 1.5px 1.5px 2.5px 3px rgba(0, 0, 0, 0.041);
 }
 
 label{
@@ -16,4 +17,17 @@ label{
 
 input{
     padding: 10px;
+}
+
+.mt{
+    margin-bottom: 30px;
+}
+
+.btn{
+    background: pink;
+    border-radius: 34px;
+    width: 100%;
+    border-color: pink;
+    font-weight: 600;
+    margin-top: 16px;
 }

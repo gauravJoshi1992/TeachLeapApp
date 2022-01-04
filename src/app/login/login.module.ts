@@ -15,6 +15,10 @@ import { SignupComponent } from './signup/signup.component';
     CommonModule,
     LoginRoutingModule,
     ReactiveFormsModule
+  ],
+  exports:[
+    LoginComponent,
+    SignupComponent
   ]
 })
 export class LoginModule { }

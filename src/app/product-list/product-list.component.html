@@ -15,14 +15,14 @@
   <h6 style="margin: 8px;">CATEGORY</h6>
   <div *ngFor="let item of categoryData" style="margin:8px">
     <label class="custom-control custom-checkbox">
-      <input type="checkbox" name="{{item.title}}" id="{{item.title}}" value="checkedValue"
+      <input type="checkbox" name="{{item.title}}" (change) ="filterData($event)" id="{{item.title}}" value="{{item.title}}"
         class="custom-control-input"> &nbsp; &nbsp;
       <span class="custom-control-indicator">{{item.title}}</span>
     </label>
   </div>
 </div>
 <div style="width: 80%; height: 100%; float: left;">
-  <div routerLink="/product-detail" class="product" *ngFor=" let item of productList">
+  <div routerLink="/product-detail" class="product" *ngFor=" let item of filteredProductList">
     <div class="image-box"></div>
     <img class="image" src="{{item.image}}">
     <div class="text">
