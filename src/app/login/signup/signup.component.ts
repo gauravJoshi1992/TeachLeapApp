@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-
+import { SignupLoginService } from '../../service/signup-login.service';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -9,7 +9,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors,
 export class SignupComponent implements OnInit {
   public signupForm: FormGroup = new FormGroup({});
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private signupLoginService:SignupLoginService) { }
 
   ngOnInit(): void {
     this.signupForm = this.fb.group({
@@ -21,6 +21,8 @@ export class SignupComponent implements OnInit {
       }, {validator: this.confirmPassword})
   }
 
+  
+
   patternValidator(c: AbstractControl): ValidationErrors {
       if (!c.value) {
         return  {invalidPassword: true};
@@ -31,7 +33,6 @@ export class SignupComponent implements OnInit {
     };
   
    get f(){
-     console.log(this.signupForm);
     return this.signupForm.controls;
   }
 
@@ -50,7 +51,15 @@ export class SignupComponent implements OnInit {
   }
 
   submit(){
-    console.log('Submitted');
+    this.signupLoginService.setUser(this.signupForm.value).subscribe(res => {
+      const signupMsg= res;
+      console.log(res.returnVal)
+      // console.log(signupMsg['returnVal']);
+    });
   }
+}
+
+function typeOf(typeOf: any, signupMsg: Object, arg2: string) {
+  throw new Error('Function not implemented.');
 }
 

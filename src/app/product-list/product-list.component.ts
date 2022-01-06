@@ -40,6 +40,7 @@ export class ProductListComponent implements OnInit {
   getProductList()
   {
    this.productListService.getProductList().subscribe(res => {
+     console.log(typeof res);
       this.productList = res;
       this.filteredProductList = res;
     });
