@@ -13,4 +13,8 @@ export class SignupLoginService {
     const headers= {'Content-type': 'application/json'}
     return this.http.post('http://localhost:4000/sign-up', body, { headers });
   }
+
+  login(body: any): Observable<any>{
+    return this.http.post('http://localhost:4000/login', body);
+  }
 }

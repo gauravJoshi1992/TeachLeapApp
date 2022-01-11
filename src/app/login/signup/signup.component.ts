@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { SignupLoginService } from '../../service/signup-login.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -9,7 +10,7 @@ import { SignupLoginService } from '../../service/signup-login.service';
 export class SignupComponent implements OnInit {
   public signupForm: FormGroup = new FormGroup({});
 
-  constructor(private fb: FormBuilder, private signupLoginService:SignupLoginService) { }
+  constructor(private fb: FormBuilder, private signupLoginService:SignupLoginService, public router: Router) { }
 
   ngOnInit(): void {
     this.signupForm = this.fb.group({
@@ -53,13 +54,10 @@ export class SignupComponent implements OnInit {
   submit(){
     this.signupLoginService.setUser(this.signupForm.value).subscribe(res => {
       const signupMsg= res;
+      this.router.navigateByUrl('/home');
       console.log(res.returnVal)
       // console.log(signupMsg['returnVal']);
     });
   }
-}
-
-function typeOf(typeOf: any, signupMsg: Object, arg2: string) {
-  throw new Error('Function not implemented.');
 }
 
