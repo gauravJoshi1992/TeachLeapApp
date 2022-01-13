@@ -21,10 +21,8 @@ export class LoginComponent implements OnInit {
   }
 
   submit(){
-    console.log(this.loginForm.value)
     this.signupLoginService.login(this.loginForm.value).subscribe(res => {
       this.router.navigateByUrl('/home');
-      console.log(res);
     })
   }
 }
