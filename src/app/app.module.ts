@@ -14,7 +14,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginModule } from './login/login.module';
 import { AuthInterceptorInterceptor } from './service/interceptor/auth-interceptor.interceptor';
-
+import { StoreModule } from '@ngrx/store';
+import { productReducer } from './store/reducers/product.reducer';
 
 @NgModule({
   declarations: [
@@ -31,9 +32,10 @@ import { AuthInterceptorInterceptor } from './service/interceptor/auth-intercept
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
+    StoreModule.forRoot({productList: productReducer}),
     ReactiveFormsModule,
     FormsModule,
-    LoginModule
+    LoginModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

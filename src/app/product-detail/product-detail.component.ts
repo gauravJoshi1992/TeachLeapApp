@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ProductListService } from '../service/product-list.service';
 
 
 @Component({
@@ -113,12 +115,16 @@ export class ProductDetailComponent implements OnInit {
       'null' : 7
   
     };
-  constructor() { }
+  product: any;
+  constructor(private productListService: ProductListService, private activatedRoute: ActivatedRoute) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.sortData();
+    this.activatedRoute.params.subscribe(params => {
+      this.productListService.getProduct(params.id).subscribe(res => {this.product = res});
+    })
   }
-    
+
     public compareEnumVals(a: any,b: any){
         if(this.POLICY_ENUM[a] > this.POLICY_ENUM[b])
             return 1;
@@ -144,6 +150,5 @@ export class ProductDetailComponent implements OnInit {
         console.log(homeOwners.concat(auto, earthquake, excessLiability, privateCollections));
       }
 
- 
 
 }

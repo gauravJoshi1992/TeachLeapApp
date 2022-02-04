@@ -22,7 +22,7 @@
   </div>
 </div>
 <div style="width: 80%; height: 100%; float: left;">
-  <div routerLink="/product-detail" class="product" *ngFor=" let item of filteredProductList">
+  <div [routerLink]="['/product-detail', item.id]" (click)="onClick(item)" class="product" *ngFor=" let item of filteredProductList">
     <div class="image-box"></div>
     <img class="image" src="{{item.image}}">
     <div class="text">

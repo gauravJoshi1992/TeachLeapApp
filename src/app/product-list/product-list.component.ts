@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductListService } from '../service/product-list.service';
 import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
-import { convertToObject } from 'typescript';
+import { State, Store } from '@ngrx/store';
+import { ADD_PRODUCT_LIST } from '../store/actions/products-list.action';
+import { selectAllProductsList } from '../store/selectors/products.selector';
+import { AppState } from '../store/state/app.state';
 
 @Component({
   selector: 'app-product-list',
@@ -29,12 +32,21 @@ export class ProductListComponent implements OnInit {
  }
   genderData: any;
   categoryData: any;
-  constructor(private productListService: ProductListService) { }
+  public produc = this.store.select(selectAllProductsList);
+  constructor(private productListService: ProductListService, private store: Store<AppState>) { }
 
   ngOnInit() {
     this.genderData = this.filter.gender;
-    this.categoryData = this.filter.Category
-    this.getProductList();
+    this.categoryData = this.filter.Category;
+    this.produc.subscribe(productList => {
+      console.log(productList)
+      if (productList.length > 0) {
+        this.productList = productList;
+        this.filteredProductList = productList;
+      } else {
+        this.getProductList();
+      }
+    });
   }
 
   getProductList()
@@ -43,6 +55,7 @@ export class ProductListComponent implements OnInit {
      console.log(typeof res);
       this.productList = res;
       this.filteredProductList = res;
+      this.store.dispatch(ADD_PRODUCT_LIST({ productList: this.productList }));
     });
   }
 
@@ -58,5 +71,9 @@ export class ProductListComponent implements OnInit {
     this.filteredProductList = this.productList.filter((val: { category: string }) => {return this.selectedType.includes(val.category)});
     // this.productList.filter(val => {return val.includes('man')})
     console.log(this.filteredProductList);
+  }
+
+  onClick(item: any) {
+    this.productListService.selectedProduct.next(item);
   }
 }
